@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Configure your domain zone so that the subdomain
+
+function domain(){
+ if [ $# -lt 2 ]; then
+    subdomain=("www" "lb-01" "web-01" "web-02")
+    for item in "${subdomain[@]}";
+    do
+      dig $item.$1
+    done
+ else
+    dig $1.$2
+ fi
+}
+
+# Call the function with arguments
+domain "$@"
+
